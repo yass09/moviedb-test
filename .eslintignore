@@ -1,0 +1,4 @@
+# Avoid linting in node modules
+node_modules/*
+config/
+/root/src/serviceWorker.js
