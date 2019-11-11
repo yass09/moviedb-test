@@ -4,7 +4,7 @@ import {
 	LOAD_MOVIES_ERROR,
 } from '../actions/actionsTypes';
 
-const loadMovies = (state = [], action) => {
+const loadMoviesReducer = (state = {}, action) => {
 	switch (action.type) {
 		case LOAD_MOVIES:
 			return {
@@ -17,6 +17,7 @@ const loadMovies = (state = [], action) => {
 				...state,
 				loading: false,
 				movies: action.movies,
+				error: null,
 			};
 		case LOAD_MOVIES_ERROR:
 			return {
@@ -29,4 +30,4 @@ const loadMovies = (state = [], action) => {
 	}
 };
 
-export default loadMovies;
+export default loadMoviesReducer;
