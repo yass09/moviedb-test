@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 const Main = styled.main`
+	display: flex;
+	flex-direction: column;
 	height: 90vh;
-	width: 100%;
 	overflow: scroll;
+	width: 100%;
 `;
 
 export default Main;
