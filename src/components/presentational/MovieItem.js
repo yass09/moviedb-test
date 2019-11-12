@@ -39,7 +39,7 @@ const MovieInfoContainer = styled.div`
 	flex-direction: column;
 	padding: 0.4em;
 	width: 50%;
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		height: auto;
 		width: 90%;
 	}
@@ -99,8 +99,10 @@ const MovieRatingText = styled.p`
 `;
 
 const MovieInfoBody = styled.div`
+	display: flex;
+	flex-direction: column;
 	width: 100%;
-	height: 40%;
+	max-height: 10em;
 `;
 
 const MovieOverview = styled.p`
@@ -108,15 +110,19 @@ const MovieOverview = styled.p`
 	margin: 0;
 	max-width: 100%;
 	display: -webkit-box;
-	-webkit-line-clamp: 4;
+	-webkit-line-clamp: 8;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	@media (max-width: 1024px) {
+		-webkit-line-clamp: 4;
+	}
 `;
 
 const MovieBtn = styled.p`
+	align-self: flex-end;
 	font-size: 0.5em;
 	font-weight: 700;
-	align-self: flex-end;
+	margin-bottom: 0;
 `;
 
 const MovieItem = ({ movie }) => {
@@ -142,8 +148,8 @@ const MovieItem = ({ movie }) => {
 				</MovieInfoHeader>
 				<MovieInfoBody>
 					<MovieOverview>{overview}</MovieOverview>
+					<MovieBtn>Click for more</MovieBtn>
 				</MovieInfoBody>
-				<MovieBtn>Click for more</MovieBtn>
 			</MovieInfoContainer>
 		</Item>
 	);
