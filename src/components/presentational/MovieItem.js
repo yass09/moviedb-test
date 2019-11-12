@@ -3,24 +3,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { POSTER_BASE_URL } from '../../constants';
+import NavigationLink from './NavigationLink';
 
 const Item = styled.li`
-	border: 0.05em solid black;
-	display: flex;
-	flex-wrap: wrap;
 	margin: 0.5em;
 	width: 38%;
-	border-radius: 0.15em;
 	@media (max-width: 1024px) {
 		height: auto;
 		width: 21%;
 	}
 	@media (max-width: 768px) {
-		height: auto;
 		width: 28%;
 	}
 	@media (max-width: 375px) {
 		width: 85%;
+	}
+`;
+
+const MovieLink = styled(NavigationLink)`
+	border: 0.05em solid black;
+	border-radius: 0.15em;
+	display: flex;
+	flex-wrap: wrap;
+	@media (max-width: 1024px) {
+		height: 100%;
+		${'' /* width: 21%; */}
 	}
 `;
 
@@ -35,6 +42,7 @@ const MovieImg = styled.img`
 `;
 
 const MovieInfoContainer = styled.div`
+	align-self: flex-start;
 	display: flex;
 	flex-direction: column;
 	padding: 0.4em;
@@ -46,11 +54,11 @@ const MovieInfoContainer = styled.div`
 `;
 
 const MovieInfoHeader = styled.div`
-	display: flex;
-	width: 100%;
 	align-items: center;
+	display: flex;
 	margin-bottom: 0.5em;
 	position: relative;
+	width: 100%;
 `;
 
 const MovieInfoTitleContainer = styled.div`
@@ -110,7 +118,7 @@ const MovieOverview = styled.p`
 	margin: 0;
 	max-width: 100%;
 	display: -webkit-box;
-	-webkit-line-clamp: 8;
+	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	@media (max-width: 1024px) {
@@ -127,6 +135,7 @@ const MovieBtn = styled.p`
 
 const MovieItem = ({ movie }) => {
 	const {
+		id,
 		poster_path: posterPath,
 		title,
 		vote_average: rating,
@@ -135,28 +144,31 @@ const MovieItem = ({ movie }) => {
 	} = movie;
 	return (
 		<Item>
-			<MovieImg src={`${POSTER_BASE_URL}${posterPath}`} />
-			<MovieInfoContainer>
-				<MovieInfoHeader>
-					<MovieRating>
-						<MovieRatingText>{rating}</MovieRatingText>
-					</MovieRating>
-					<MovieInfoTitleContainer>
-						<MovieTitle>{title}</MovieTitle>
-						<MovieDate>{releaseDate}</MovieDate>
-					</MovieInfoTitleContainer>
-				</MovieInfoHeader>
-				<MovieInfoBody>
-					<MovieOverview>{overview}</MovieOverview>
-					<MovieBtn>Click for more</MovieBtn>
-				</MovieInfoBody>
-			</MovieInfoContainer>
+			<MovieLink to={`/movie/${id}`}>
+				<MovieImg src={`${POSTER_BASE_URL}${posterPath}`} />
+				<MovieInfoContainer>
+					<MovieInfoHeader>
+						<MovieRating>
+							<MovieRatingText>{rating}</MovieRatingText>
+						</MovieRating>
+						<MovieInfoTitleContainer>
+							<MovieTitle>{title}</MovieTitle>
+							<MovieDate>{releaseDate}</MovieDate>
+						</MovieInfoTitleContainer>
+					</MovieInfoHeader>
+					<MovieInfoBody>
+						<MovieOverview>{overview}</MovieOverview>
+						<MovieBtn>Click for more</MovieBtn>
+					</MovieInfoBody>
+				</MovieInfoContainer>
+			</MovieLink>
 		</Item>
 	);
 };
 
 MovieItem.propTypes = {
 	movie: PropTypes.shape({
+		id: PropTypes.number,
 		title: PropTypes.string,
 		poster_path: PropTypes.string,
 		vote_average: PropTypes.number,

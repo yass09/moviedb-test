@@ -10,9 +10,8 @@ const List = styled.ul`
 	font-size: 2em;
 	justify-content: center;
 	list-style: none;
-	margin: 0.5em;
+	margin: 0;
 	padding: 0;
-	${'' /* width: 100%; */}
 	height: 100%;
 	@media (max-width: 375px) {
 		height: 85%;
