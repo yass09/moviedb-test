@@ -3,12 +3,10 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './reducers';
-import { loadMoviesSaga } from './sagas/loadMoviesSaga';
+import { rootSaga } from './sagas';
 
 const initialState = {
-	loading: false,
-	error: null,
-	movies: [],
+	movieList: [],
 	selectedMovie: {},
 };
 
@@ -21,6 +19,6 @@ const enhancers = compose(
 
 const store = createStore(rootReducer, initialState, enhancers);
 
-sagaMiddleWare.run(loadMoviesSaga);
+sagaMiddleWare.run(rootSaga);
 
 export default store;
