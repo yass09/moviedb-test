@@ -2,19 +2,19 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { loadMoviesSaga } from '../../redux/sagas/loadMoviesSaga';
 import { loadMovies } from '../../redux/actions/loadMoviesActions';
+import { rootSaga } from '../../redux/sagas';
 
 import MovieList from '../presentational/MovieList';
 
 const mapStateToProps = state => ({
-	movies: state.movies,
+	movies: state.movieList.movies,
 	loading: state.loading,
 	error: state.error,
 });
 const mapDispatchToProps = dispatch => ({
 	getMovies: () => dispatch(loadMovies()),
-	loadMoviesSaga,
+	rootSaga,
 });
 
 const MovieListContainer = props => {
