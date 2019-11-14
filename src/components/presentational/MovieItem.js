@@ -3,6 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { POSTER_BASE_URL } from '../../constants';
+import {
+	MovieRating,
+	MovieRatingText,
+	MovieDate,
+	MovieInfoHeader,
+	MovieInfoContainer,
+	MovieInfoTitleContainer,
+	MovieInfoBody,
+} from './MovieInfoElements';
 import NavigationLink from './NavigationLink';
 
 const Item = styled.li`
@@ -27,7 +36,6 @@ const MovieLink = styled(NavigationLink)`
 	flex-wrap: wrap;
 	@media (max-width: 1024px) {
 		height: 100%;
-		${'' /* width: 21%; */}
 	}
 `;
 
@@ -39,34 +47,6 @@ const MovieImg = styled.img`
 	@media (max-width: 375px) {
 		height: auto;
 	}
-`;
-
-const MovieInfoContainer = styled.div`
-	align-self: flex-start;
-	display: flex;
-	flex-direction: column;
-	padding: 0.4em;
-	width: 50%;
-	@media (max-width: 1024px) {
-		height: auto;
-		width: 90%;
-	}
-`;
-
-const MovieInfoHeader = styled.div`
-	align-items: center;
-	display: flex;
-	margin-bottom: 0.5em;
-	position: relative;
-	width: 100%;
-`;
-
-const MovieInfoTitleContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	left: 1.5em;
-	margin-left: 0.2em;
-	position: relative;
 `;
 
 const MovieTitle = styled.p`
@@ -82,37 +62,6 @@ const MovieTitle = styled.p`
 	}
 `;
 
-const MovieDate = styled.p`
-	font-size: 0.5em;
-	margin: 0;
-`;
-
-const MovieRating = styled.div`
-	align-items: center;
-	background-color: #0d1c23;
-	border: 0.1em solid #5fce80;
-	border-radius: 50%;
-	color: #5fce80;
-	display: flex;
-	justify-content: center;
-	height: 1.2em;
-	width: 1.2em;
-	position: absolute;
-`;
-
-const MovieRatingText = styled.p`
-	font-size: 0.5em;
-	font-weight: 700;
-	margin: 0;
-`;
-
-const MovieInfoBody = styled.div`
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	max-height: 10em;
-`;
-
 const MovieOverview = styled.p`
 	font-size: 0.6em;
 	margin: 0;
@@ -121,6 +70,7 @@ const MovieOverview = styled.p`
 	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	text-align: justify;
 	@media (max-width: 1024px) {
 		-webkit-line-clamp: 4;
 	}
@@ -142,6 +92,7 @@ const MovieItem = ({ movie }) => {
 		release_date: releaseDate,
 		overview,
 	} = movie;
+
 	return (
 		<Item>
 			<MovieLink to={`/movie/${id}`}>
