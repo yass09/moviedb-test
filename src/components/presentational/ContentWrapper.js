@@ -6,7 +6,7 @@ const ContentWrapper = styled.div`
 	flex-direction: column;
 	height: 100%;
 	overflow: scroll;
-	wwidth: 100%;
+	width: 100%;
 `;
 
 export default ContentWrapper;
