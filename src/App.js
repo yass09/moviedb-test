@@ -8,6 +8,7 @@ import BodyWrapper from './components/presentational/Main';
 import ContentWrapper from './components/presentational/ContentWrapper';
 import MovieListView from './components/containers/MovieListView';
 import MovieDetailsView from './components/containers/MovieDetailsView';
+import FavouritesView from './components/containers/FavouritesView';
 import * as routes from './routes';
 
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
 							exact
 							component={MovieDetailsView}
 						/>
+						<Route path={routes.FAVOURITES} exact component={FavouritesView} />
 					</Switch>
 				</ContentWrapper>
 			</BodyWrapper>
