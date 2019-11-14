@@ -15,7 +15,6 @@ export function* loadSelectedMovieWorker(action) {
 	try {
 		const data = yield call(() => getData(url));
 		yield put(loadMovieDetailsSuccess(data));
-		console.log(data);
 	} catch (e) {
 		yield put(loadMovieDetailsError(e));
 		console.log('error', e);
