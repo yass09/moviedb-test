@@ -43,7 +43,9 @@ const MovieDetailsView = props => {
 	if (error) return <div>Oops, Something went wrong...</div>;
 
 	const { recommendations: { results: recommendations } = {} } = movie;
-	const isFavourite = favourites.includes(movie);
+
+	const isFavourite = favourites.some(m => m.id === movie.id);
+
 	return (
 		<section>
 			<MovieHeader
@@ -70,6 +72,7 @@ MovieDetailsView.propTypes = {
 		recommendations: PropTypes.shape({
 			results: PropTypes.array,
 		}),
+		id: PropTypes.number,
 	}),
 	loading: PropTypes.bool,
 	error: PropTypes.string,
