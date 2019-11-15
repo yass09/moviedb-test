@@ -7,9 +7,7 @@ import {
 	MovieRating,
 	MovieRatingText,
 	MovieDate,
-	MovieInfoHeader,
 	MovieInfoContainer,
-	MovieInfoTitleContainer,
 	MovieInfoBody,
 } from './MovieInfoElements';
 import starIcon from '../../assets/img/star_black.svg';
@@ -21,32 +19,44 @@ const MovieHeaderContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-`;
-
-const MovieRatingLg = styled(MovieRating)`
-	height: 3em;
-	width: 3em;
-	left: 0.5em;
-	p {
-		font-size: 1.5em;
+	@media (max-width: 375px) {
+		height: 90vh;
+		background-size: cover !important;
 	}
 `;
 
-const MovieInfoTitleContainerLg = styled(MovieInfoTitleContainer)`
-	left: 4em;
+const MovieInfoContainerLg = styled(MovieInfoContainer)`
+	width: 70%;
+	@media (max-width: 1024px) {
+		height: auto;
+		width: 55%;
+	}
+`;
+
+const MovieRatingLg = styled(MovieRating)`
+	align-self: flex-end;
+	height: 3em;
+	width: 3em;
+	right: -1em;
+	margin-right: 1em;
+	p {
+		font-size: 1.5em;
+	}
+	@media (max-width: 375px) {
+		bottom: 4em;
+	}
 `;
 
 const MovieDateLg = styled(MovieDate)`
 	font-size: 1em;
 	font-weight: 600;
 	p {
-		margin: 0 0.5em;
+		margin: 0;
 		font-weight: 400;
 	}
 `;
 
 const MovieInfoBodyLg = styled(MovieInfoBody)`
-	margin-left: 1em;
 	p {
 		margin: 0.5em 0;
 		text-align: justify;
@@ -56,27 +66,46 @@ const MovieInfoBodyLg = styled(MovieInfoBody)`
 const MoviePoster = styled.img`
 	height: 20em;
 	width: auto;
+	margin-right: 1em;
 `;
 
 const MovieHeaderDetailsContainer = styled.div`
 	color: white;
 	display: flex;
+	justify-content: center;
 	flex-wrap: wrap;
-	width: 50%;
+	width: 55%;
 	min-height: 20em;
+	@media (max-width: 1500px) {
+		width: 70%;
+		p {
+			display: -webkit-box;
+			-webkit-line-clamp: 8;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+	}
+	@media (max-width: 1024px) {
+		width: 100%;
+		p {
+			-webkit-line-clamp: 6;
+		}
+	}
 `;
 
 const MovieInfoTitle = styled.h2`
 	font-size: 2.5em;
-	margin: 0 0 0.1em 0;
+	margin: 0;
 	display: inline-block;
-	width: max-content;
+	@media (max-width: 375px) {
+		font-size: 1.5em;
+	}
 `;
 
 const MovieGenresContainer = styled.div`
 	display: flex;
 	p {
-		margin: 0 0.5em 0.2em 0;
+		margin: 0 0.5em;
 	}
 `;
 
@@ -92,6 +121,13 @@ const MovieInfoFooterIcon = styled.img`
 	margin: 0 0.5em;
 `;
 
+const MovieMetaContainer = styled.div`
+	align-items: center;
+	display: flex;
+	position: relative;
+	${'' /* justify-content: space-between; */};
+`;
+
 const MovieHeader = ({ movie, isFavourite, toggleFavourite }) => {
 	const {
 		backdrop_path: backdropPath,
@@ -103,27 +139,26 @@ const MovieHeader = ({ movie, isFavourite, toggleFavourite }) => {
 		vote_average: rating,
 	} = movie;
 	const bgStyle = {
-		background: `linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(${POSTER_BASE_URL}${backdropPath}) no-repeat center / 100% fixed`,
+		background: `linear-gradient(rgba(0, 0, 0, 0.5),rgba(255, 255, 255, 0.5)), url(${POSTER_BASE_URL}${backdropPath}) no-repeat center / 100% fixed`,
 	};
+
 	return (
 		<MovieHeaderContainer style={bgStyle}>
 			<MovieHeaderDetailsContainer>
 				<MoviePoster src={`${POSTER_BASE_URL}${posterPath}`} />
-				<MovieInfoContainer>
-					<MovieInfoHeader>
-						<MovieRatingLg>
-							<MovieRatingText>{rating}</MovieRatingText>
-						</MovieRatingLg>
-						<MovieInfoTitleContainerLg>
-							<MovieInfoTitle>{title}</MovieInfoTitle>
+				<MovieInfoContainerLg>
+					<MovieInfoTitle>{title}</MovieInfoTitle>
+					<MovieInfoBodyLg>
+						<MovieMetaContainer>
+							<MovieRatingLg>
+								<MovieRatingText>{rating}</MovieRatingText>
+							</MovieRatingLg>
+							<MovieDateLg>{releaseDate}</MovieDateLg>
 							<MovieGenresContainer>
 								{genres &&
 									genres.map(genre => <p key={genre.id}>{genre.name}</p>)}
 							</MovieGenresContainer>
-							<MovieDateLg>{releaseDate}</MovieDateLg>
-						</MovieInfoTitleContainerLg>
-					</MovieInfoHeader>
-					<MovieInfoBodyLg>
+						</MovieMetaContainer>
 						<p>{overview}</p>
 					</MovieInfoBodyLg>
 					<MovieInfoFooter>
@@ -133,7 +168,7 @@ const MovieHeader = ({ movie, isFavourite, toggleFavourite }) => {
 							onClick={() => toggleFavourite(movie)}
 						/>
 					</MovieInfoFooter>
-				</MovieInfoContainer>
+				</MovieInfoContainerLg>
 			</MovieHeaderDetailsContainer>
 		</MovieHeaderContainer>
 	);
