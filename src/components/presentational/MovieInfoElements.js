@@ -12,7 +12,7 @@ export const MovieInfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0.4em;
-	width: 50%;
+	width: 49%;
 	@media (max-width: 1024px) {
 		height: auto;
 		width: 90%;
