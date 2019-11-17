@@ -16,6 +16,7 @@ const persistConfig = {
 const initialState = {
 	movieList: [],
 	selectedMovie: {},
+	orderBy: 'popularity',
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);
