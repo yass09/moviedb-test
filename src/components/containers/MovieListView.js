@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 
 import { loadMovies } from '../../redux/actions/loadMoviesActions';
 import { rootSaga } from '../../redux/sagas';
+import orderedMovieListSelector from '../../redux/selectors/movieListSelector';
 
 import MovieList from '../presentational/MovieList';
 import SectionHeading from '../presentational/SectionHeading';
+import ViewHeader from '../presentational/ViewHeader';
 
 const mapStateToProps = state => ({
-	movies: state.movieList.movies,
+	movies: orderedMovieListSelector(state),
 	loading: state.movieList.loading,
 	error: state.movieList.error,
 });
@@ -28,7 +30,9 @@ const MovieListContainer = props => {
 	if (error) return <div>Oops, Something went wrong...</div>;
 	return (
 		<section>
-			<SectionHeading>Movies</SectionHeading>
+			<ViewHeader>
+				<SectionHeading>Movies</SectionHeading>
+			</ViewHeader>
 			<MovieList movies={movies} />
 		</section>
 	);
