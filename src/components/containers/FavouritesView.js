@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import MovieList from '../presentational/MovieList';
 import SectionHeading from '../presentational/SectionHeading';
+import ViewHeader from '../presentational/ViewHeader';
 
 const mapStateToProps = state => ({
 	favourites: state.favourites,
@@ -14,7 +15,10 @@ const FavouritesView = props => {
 	const { favourites } = props;
 	return (
 		<section>
-			<SectionHeading>Favourites</SectionHeading>
+			<ViewHeader>
+				<SectionHeading>Favourites</SectionHeading>
+			</ViewHeader>
+
 			{favourites.length > 0 && <MovieList movies={favourites} />}
 		</section>
 	);

@@ -9,6 +9,7 @@ import { toggleFavourite } from '../../redux/actions/toggleFavouriteActions';
 import MovieList from '../presentational/MovieList';
 import SectionHeading from '../presentational/SectionHeading';
 import MovieHeader from '../presentational/MovieHeader';
+import ViewHeader from '../presentational/ViewHeader';
 
 const mapStateToProps = state => ({
 	movie: state.selectedMovie.movieDetails,
@@ -53,7 +54,9 @@ const MovieDetailsView = props => {
 				toggleFavourite={dispatchToggleFavourite}
 				isFavourite={isFavourite}
 			/>
-			<SectionHeading>Recommendations</SectionHeading>
+			<ViewHeader>
+				<SectionHeading>Recommendations</SectionHeading>
+			</ViewHeader>
 			<MovieList movies={recommendations} />
 		</section>
 	);
