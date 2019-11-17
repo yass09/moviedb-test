@@ -13,3 +13,6 @@ export const LOAD_MOVIE_DETAILS_ERROR = 'LOAD_MOVIE_DETAILS_ERROR';
 
 // Add to Favourites
 export const TOGGLE_FAVOURITES = 'TOGGLE_FAVOURITES';
+
+// Set Order
+export const SET_ORDER_BY = 'SET_ORDER_BY';
