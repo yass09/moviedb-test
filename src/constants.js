@@ -21,7 +21,8 @@ https://api.themoviedb.org/3/discover/movie?api_key=<<api_key>>&language=en-US&s
 */
 
 // Movie List Url
-export const MOVIE_LIST_URL = `${BASE_URL}${MOVIE_LIST_PATH}${API_KEY}${LANGUAGE_PARAM}${SORT_BY_POPULARITY}${OTHER_PARAMS}${PAGE_PARAM}`;
+export const getMovieListUrl = (pageNumber = 1) =>
+	`${BASE_URL}${MOVIE_LIST_PATH}${API_KEY}${LANGUAGE_PARAM}${SORT_BY_POPULARITY}${OTHER_PARAMS}${PAGE_PARAM}${pageNumber}`;
 
 // Movie details with recommendations example
 // https://api.themoviedb.org/3/movie/475557?api_key=840b5fb3db4fb2e4324d0a9fe010ba01&language=en-US&page=1&append_to_response=recommendations

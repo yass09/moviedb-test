@@ -3,7 +3,7 @@
 import { call, put } from 'redux-saga/effects';
 
 import { getData } from '../../helpers';
-import { MOVIE_LIST_URL } from '../../constants';
+import { getMovieListUrl } from '../../constants';
 
 import {
 	loadMoviesSuccess,
@@ -12,7 +12,7 @@ import {
 
 export function* loadMoviesWorker() {
 	try {
-		const data = yield call(() => getData(MOVIE_LIST_URL));
+		const data = yield call(() => getData(getMovieListUrl()));
 		yield put(loadMoviesSuccess(data.results));
 	} catch (e) {
 		yield put(loadMoviesError(e));
